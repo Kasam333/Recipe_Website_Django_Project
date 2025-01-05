@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#axwg66kubofc$vzj=2a1=jngk9+ub^o6rn37nm((jiclc(e$3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['HeyFoodRecipe.defang.io']
 
 
 # Application definition
