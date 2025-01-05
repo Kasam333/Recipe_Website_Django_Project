@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3 px-1 alert-warning position-fixed d-none d-md-block" id="sticky-sidebar">
+      <div class="nav flex-column flex-nowrap vh-50 overflow-auto text-white p-3 bg-light" id="sidebar">
+        <ul class="list-group" style="margin-top:10px;">
+          <!-- Inside your template (e.g., profile.html) -->
+          <img src="{% if request.user.userprofile.profile_image %}
+              {{ MEDIA_URL }}{{ request.user.userprofile.profile_image }}
+              {% else %}/static/img/user.png
+              {% endif %}" alt="User Profile" class="rounded-circle" style="width: 100px; height: 100px; margin-bottom: 10px;">
+          <li class="list-group-item border-10" style="margin: 3px;">
+            <strong>Name:</strong> {{ request.user.first_name }} {{ request.user.last_name }}
+          </li>
+          <li class="list-group-item border-10" style="margin: 3px;">
+            <strong>Username:</strong> {{ request.user.username }}
+          </li>
+          <li class="list-group-item border-10" style="margin: 3px;">
+            <strong>Email:</strong> {{ request.user.email }}
+          </li>
+          <li class="list-group-item border-10" style="margin: 3px;">
+            <strong>Total Recipes:</strong> {{ recipes.count }}
+          </li>
+        </ul>
+        <a href="/logout/" class="btn btn-success w-100 mt-3">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Main Content -->
+    <div class="col-md-9 offset-md-3 col-12" id="main">
+      <div class="d-block d-md-none p-2 mb-3" style="margin-top: 10px;">
+        <ul class="list-group">
+          <img src="{% if request.user.userprofile.profile_image %}
+                        {{ MEDIA_URL }}{{ request.user.userprofile.profile_image }}
+                        {% else %}/static/img/user.png
+                        {% endif %}" alt="User Profile" class="rounded-circle"
+            style="width: 100px; height: 100px; margin-bottom: 10px;"><li class="list-group-item">Name: {{ request.user.first_name }} {{ request.user.last_name }}</li>
+          <li class="list-group-item">Username: {{ request.user.username }}</li>
+          <li class="list-group-item">Email: {{ request.user.email }}</li>
+          <li class="list-group-item">Total Recipes: {{ recipes.count }}</li>
+        </ul>
+        <a href="/logout/" class="btn btn-success w-100 mt-3">Logout</a>
+      </div>
+
+  
+
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <h2 class="text-center text-md-start mb-2" style="margin-left: 10px;">My Recipes</h2>
+        <form class="d-flex flex-grow-1 ms-3">
+          <!-- Search input -->
+          <input type="text" class="form-control me-2 flex-grow-1" name="search" placeholder="Search My Recipes...">
+          <!-- Search button -->
+          <button type="submit" class="btn btn-primary" style="background-color: #c28b14; border: none; margin-right: 20px;">Search</button>
+        </form>
+      </div>
+
+      <!-- Recipes Section -->
+      <section class="recipes-container" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="container">
+          <div class="row g-3"> <!-- Use Bootstrap gap utility -->
+
+            {% for i in recipes %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="card">
+                <img src="/media/{{i.Recipe_image}}" class="card-img-top" alt="{{i.Recipe_name}}" />
+                <div class="card-body">
+                  <h5 class="card-title" style="font-size: 14px;">{{i.Recipe_name}}</h5>
+                  <p class="card-title" style="font-size: 10px;">{{i.Recipe_description|truncatechars:70}}</p>
+                  <p class="card-text" style="font-size: 10px;">Prep : {{i.Recipe_prep_time}} | Cook :
+                    {{i.Recipe_cook_time}}</p>
+                  <div class="d-flex justify-content-between">
+                    <button type="button" 
+                          class="btn btn-danger" 
+                          style="background-color:rgb(144, 22, 22);" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#confirmDeleteModal{{i.id}}">
+                      Delete
+                    </button>
+
+                    <a href="/update-recipe/{{i.id}}/" class="btn btn-success"
+                      style="background-color:rgb(16, 85, 16);">Update</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal for Delete Confirmation -->
+            <div class="modal fade" id="confirmDeleteModal{{i.id}}" tabindex="-1" aria-labelledby="deleteModalLabel{{i.id}}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel{{i.id}}">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete the recipe "<strong>{{i.Recipe_name}}</strong>"? This action cannot be undone.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="/delete-recipe/{{i.id}}/" class="btn btn-danger">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+{% endblock main %}

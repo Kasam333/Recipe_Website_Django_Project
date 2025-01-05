@@ -1,0 +1,179 @@
+/* Custom Button Style */
+.custom-btn {
+    border-radius: 30px;
+    /* Rounded edges */
+    background: linear-gradient(45deg, #ff6a00, #ee8f09);
+    /* Gradient background */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Capitalizes text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    transition: all 0.3s ease-in-out;
+    /* Smooth transition for hover effects */
+}
+
+.custom-btn:hover {
+    background: linear-gradient(45deg, #e6ee09, #ec6b0f);
+    /* Reverse gradient on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow on hover */
+    transform: translateY(-3px);
+    /* Button lifts up slightly */
+}
+
+.custom-btn:focus {
+    outline: none;
+    /* Remove focus outline */
+}
+
+/* Custom Navbar Background */
+.navbar {
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black */
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('/static/img/bg_img9.jpg');
+    /* Gradient overlay with background image */
+    background-size: cover;
+    /* Ensure the image covers the whole navbar */
+    transition: background 0.3s ease;
+    /* Smooth transition for background change */
+}
+
+.navbar:hover {
+    background: rgba(0, 0, 0, 0.7);
+    /* Darken navbar slightly on hover */
+}
+
+/* Make the hamburger icon white */
+.navbar-toggler {
+    border-color: white; /* Set the border of the toggler button to white */
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Use an SVG to make the hamburger icon white */
+}
+
+ .recipes-container .card-title {
+     color: #333;
+ }
+
+ .recipes-container .btn {
+     font-size: 14px;
+     padding: 5px 10px;
+ }
+
+ .recipes-container .card {
+     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+ }
+
+ .recipes-container .card:hover {
+     transform: scale(1.05);
+     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+ }
+ .responsive-heading {
+     color: #c28b14;
+ }
+
+ /* For small screens */
+ @media (max-width: 576px) {
+     .responsive-heading {
+         font-size: 1.25rem;
+         /* Smaller size for extra small screens */
+     }
+ }
+
+ /* For medium screens */
+ @media (max-width: 768px) {
+     .responsive-heading {
+         font-size: 1.5rem;
+         /* Slightly larger size */
+     }
+ }
+
+ /* For larger screens */
+ @media (min-width: 769px) {
+     .responsive-heading {
+         font-size: 2rem;
+         /* Default size */
+     }
+ }
+
+ .profile-info {
+     transition: all 0.3s ease;
+     /* Smooth transition */
+ }
+
+ /* For small screens */
+ @media (max-width: 576px) {
+     .profile-info {
+         background-color: #f8f9fa !important;
+         /* Light grey background */
+         color: #333;
+         /* Text color for better contrast */
+         margin-top: 20px;
+         /* Add margin on top */
+         border-radius: 8px;
+         /* Rounded corners */
+     }
+
+     .profile-info .list-group-item {
+         background-color: transparent;
+         /* Transparent items */
+         border: none;
+         /* Remove borders */
+     }
+
+     .profile-info .btn {
+         font-size: 0.9rem;
+         /* Slightly smaller button font */
+     }
+ }
+
+  .btn-sm {
+      border-radius: 25px;
+      /* Rounded corners for a smooth look */
+      font-weight: bold;
+      /* Make the text bold */
+      padding-left: 15px;
+      padding-right: 15px;
+      transition: all 0.3s ease;
+      /* Smooth transition on hover */
+  }
+
+  .btn-danger {
+      background-color: #f44336;
+      /* Red for delete */
+      border: 1px solid #f44336;
+  }
+
+  .btn-danger:hover {
+      background-color: #e53935;
+      /* Darker red on hover */
+      border: 1px solid #e53935;
+  }
+
+  .btn-success {
+      background-color: #4caf50;
+      /* Green for update */
+      border: 1px solid #4caf50;
+  }
+
+  .btn-success:hover {
+      background-color: #388e3c;
+      /* Darker green on hover */
+      border: 1px solid #388e3c;
+  }
+
+  /* Optional: Add a subtle shadow on hover */
+  .btn-sm:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+  }
+
+  #sticky-sidebar {
+      transition: all 0.3s ease-in-out;
+  }
+  #mobile-sidebar {
+      transition: all 0.3s ease;
+  }

@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container my-5">
+    <form class="card shadow-lg p-5 mx-auto"
+          action="{% url 'UpdateRecipe' recipe.id %}"
+          method="POST"
+          enctype="multipart/form-data"
+          style="max-width: 700px; background-color: #f8f9fa; border-radius: 15px;">
+          
+        {% csrf_token %}
+        <!-- Form Title -->
+        <h2 class="text-center text-dark fw-bold mb-4" 
+            style="font-family: 'Poppins', sans-serif;">
+            <span style="color: #ff5722;">Update</span> Your Recipe
+        </h2>
+        
+        <hr class="mb-4" style="border-top: 3px solid #ffbe33; width: 60px; margin: 0 auto;">
+
+        <!-- Message Section -->
+        {% if messages %}
+        <div class="alert alert-info text-center" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Recipe Name -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Recipe Name</label>
+            <input type="text" class="form-control shadow-sm p-2" 
+                   name="recipe_name" value="{{recipe.Recipe_name}}">
+        </div>
+
+        <!-- Recipe Description -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Recipe Description</label>
+            <textarea class="form-control shadow-sm p-2" 
+                      rows="3" 
+                      name="recipe_description" 
+                      >{{recipe.Recipe_description}}</textarea>
+        </div>
+
+        <!-- Recipe Ingredients -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Recipe Ingredients</label>
+            <textarea class="form-control shadow-sm p-2" 
+                      rows="3" 
+                      name="recipe_ingridients" 
+                      >{{recipe.Recipe_ingridients}}</textarea>
+        </div>
+
+        <!-- Recipe Steps -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Recipe Steps</label>
+            <textarea class="form-control shadow-sm p-2" 
+                      rows="3" 
+                      name="recipe_steps" 
+                      required>{{recipe.Recipe_steps}}</textarea>
+        </div>
+
+        <!-- Preparation Time -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Preparation Time</label>
+            <input type="text" class="form-control shadow-sm p-2" 
+                   name="recipe_preparation_time" value="{{recipe.Recipe_prep_time}}">
+        </div>
+
+        <!-- Cook Time -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Cook Time</label>
+            <input type="text" class="form-control shadow-sm p-2" 
+                   name="recipe_cook_time" value="{{recipe.Recipe_cook_time}}">
+        </div>
+
+        <!-- YouTube Link -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">YouTube Video Link</label>
+            <input type="url" class="form-control shadow-sm p-2" 
+                   name="recipe_yt_link" value="{{recipe.Recipe_yt_url}}">
+        </div>
+
+        <!-- Recipe Image -->
+        <div class="mb-4">
+            <label class="form-label fw-semibold">Recipe Image</label>
+            <input type="file" class="form-control shadow-sm p-2" 
+                   name="recipe_image">
+            {% if recipe.Recipe_image %}
+            <div class="mt-3">
+                <img src="{{ recipe.Recipe_image.url }}" 
+                     alt="Recipe Image" 
+                     class="img-thumbnail shadow-sm" 
+                     style="max-width: 120px; max-height: 120px; border-radius: 10px;">
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" 
+                    class="btn btn-primary w-100 py-2 fw-bold text-uppercase me-2" 
+                    style="background: linear-gradient(to right, #ff5722, #ffbe33); border: none; border-radius: 25px;">
+                Update Recipe
+            </button>
+            <button type="button" 
+                    class="btn btn-secondary w-100 py-2 fw-bold text-uppercase ms-2" 
+                    onclick="window.location.href='{% url 'Profile' %}'" 
+                    style="border-radius: 25px;">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock main %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <!-- Main Section -->
+    <main class="page">
+
+        <!-- Hero Section -->
+        <header class="hero" style="background: url('/static/img/main.jpeg') no-repeat center center; background-size: cover;">
+            <div class="hero-container">
+                <div class="hero-text text-center text-white">
+                    <h1 class="display-3 font-weight-bold">Hey Recipes</h1>
+                    <h4 class="font-italic">No fluff, just recipes</h4>
+                </div>
+            </div>
+        </header>
+        <!-- End of Hero Section -->
+
+        <!-- Title Section -->
+        <h2 class="text-center my-5" style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #333;">Top Recipes</h2>
+
+        <!-- Recipes Section -->
+        <section class="recipes-container">
+            <div class="container">
+                <div class="row gy-4">
+                    <!-- Looping through Recipes -->
+                    {% for i in recipes %}
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <a href="single-recipe.html" class="recipe-card card shadow-sm border-0 rounded">
+                            <img src="/media/{{i.Recipe_image}}" class="card-img-top" alt="{{i.Recipe_name}}" style="height: 200px; object-fit: cover;" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-center" style="flex-grow: 1;">{{i.Recipe_name}}</h5>
+                                <p class="card-text text-center text-muted" style="flex-grow: 1; min-height: 40px;">{{i.Recipe_description|truncatechars:90}}</p>
+                                <p class="card-text text-center" style="font-size: 0.9rem;">
+                                    <span class="font-weight-bold" style="color: #333;">Prep:</span> {{i.Recipe_prep_time}} |
+                                    <span class="font-weight-bold" style="color: #333;">Cook:</span> {{i.Recipe_cook_time}}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    <!-- End Looping through Recipes -->
+                </div>
+            </div>
+        </section>
+        <!-- End of Recipes Section -->
+
+        <!-- View More Button -->
+        <div class="text-center mb-5">
+            <a href="#" class="btn btn-primary custom-btn" style="padding: .7rem 2rem; color: white; font-size: 1.1rem; margin-top:30px;">View More</a>
+        </div>
+
+    </main>
+    <!-- End of Main Section -->
+
+{% endblock main %}

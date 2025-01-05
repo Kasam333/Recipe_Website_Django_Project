@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="container py-5">
+    <div>
+        <!-- Recipe Image -->
+        <img src="{{recipe.Recipe_image.url}}" class="card-img-top" alt="Recipe Image" style="height: 300px; object-fit: cover;">
+        
+        <div class="card-body">
+            <!-- Recipe Title -->
+            <h1 class="card-title text-center mb-4" style="margin-top:20px;">{{recipe.Recipe_name}}</h1>
+            
+            <!-- Recipe Description -->
+            <p><strong>Description: </strong>{{recipe.Recipe_description}}</p>
+            
+            <!-- Preparation & Cook Time -->
+            <p><strong>Preparation Time:</strong>{{recipe.Recipe_prep_time}}</p>
+            <p><strong>Cook Time:</strong>{{recipe.Recipe_cook_time}}</p>
+            
+            <hr>
+            
+            <!-- Ingredients Section -->
+            <h4>Ingredients:</h4>
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item">{{recipe.Recipe_ingridients}}</li>
+            </ul>
+            
+            <!-- Steps Section -->
+            <h4>Steps:</h4>
+            <ol class="list-group list-group-numbered mb-4">
+                <li class="list-group-item">{{recipe.Recipe_steps}}</li>
+            </ol>
+            
+            <!-- YouTube Link -->
+            <div class="mt-4">
+                <h4>YouTube Link:</h4>
+                <a href="{{recipe.Recipe_yt_url}}" class="btn btn-danger" target="_blank">Watch on YouTube</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

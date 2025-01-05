@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="container my-5">
+    <form class="card shadow-lg p-4 mx-auto" 
+          action="{% url 'AddRecipe' %}" 
+          method="POST" 
+          enctype="multipart/form-data" 
+          style="max-width: 700px; background-color: #fff; border-radius: 20px;">
+          
+        {% csrf_token %}
+        <h2 class="text-center text-dark fw-bold mb-4" style="font-family: 'Poppins', sans-serif;">
+            <span style="color: #ff5722;">Add</span> Your Recipe
+        </h2>
+        
+        <hr class="mb-4" style="border-top: 3px solid #ffbe33; border-radius: 2px;">
+
+        {% if messages %}
+            <div class="alert alert-info text-center" role="alert">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Recipe Name -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Recipe Name</label>
+            <input type="text" class="form-control shadow-sm" name="recipe_name" placeholder="Enter recipe name" required>
+        </div>
+
+        <!-- Recipe Description -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Recipe Description</label>
+            <textarea class="form-control shadow-sm" rows="3" name="recipe_description" placeholder="Enter recipe description" required></textarea>
+        </div>
+
+        <!-- Recipe Ingredients -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Recipe Ingredients</label>
+            <textarea class="form-control shadow-sm" rows="3" name="recipe_ingridients" placeholder="Enter recipe ingredients" required></textarea>
+        </div>
+
+        <!-- Recipe Steps -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Recipe Steps</label>
+            <textarea class="form-control shadow-sm" rows="3" name="recipe_steps" placeholder="Enter recipe steps" required></textarea>
+        </div>
+
+        <!-- Preparation Time -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Preparation Time</label>
+            <input type="text" class="form-control shadow-sm" name="recipe_preparation_time" placeholder="e.g., 20 mins">
+        </div>
+
+        <!-- Cook Time -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Cook Time</label>
+            <input type="text" class="form-control shadow-sm" name="recipe_cook_time" placeholder="e.g., 40 mins">
+        </div>
+
+        <!-- YouTube Link -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">YouTube Video Link</label>
+            <input type="url" class="form-control shadow-sm" name="recipe_yt_link" placeholder="Enter YouTube video link">
+        </div>
+
+        <!-- Recipe Image -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Recipe Image</label>
+            <input type="file" class="form-control shadow-sm" name="recipe_image" required>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold text-uppercase"
+            style="background: linear-gradient(to right, #ff5722, #ffbe33); border: none; border-radius: 30px;">
+            Submit Recipe
+        </button>
+    </form>
+</div>
+
+<!-- end of main -->
+{% endblock main %}
